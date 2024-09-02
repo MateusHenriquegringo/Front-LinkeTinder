@@ -1,10 +1,11 @@
 {
   "compilerOptions": {
-    "target": "es2016",                      /* Define a versão do JavaScript para os arquivos emitidos */
-    "module": "commonjs",                    /* Define o formato de módulo usado */
+    "target": "ES6",                      /* Define a versão do JavaScript para os arquivos emitidos */
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "strict": true,
     "rootDir": "./typescript",               /* Diretório raiz para os arquivos TypeScript */
     "outDir": "./scripts",                   /* Diretório para onde os arquivos JavaScript compilados serão enviados */
-    "strict": true                          /* Ativa todas as verificações estritas */
   },
   "include": ["typescript/**/*"],            /* Inclui todos os arquivos .ts no diretório typescript */
   "exclude": ["node_modules"]                /* Exclui o diretório node_modules da compilação */

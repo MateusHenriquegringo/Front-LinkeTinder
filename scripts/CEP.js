@@ -13,7 +13,7 @@ cepInput === null || cepInput === void 0 ? void 0 : cepInput.addEventListener('k
     e.preventDefault();
     let cep = cepInput.value;
     if (validateCEP(cep)) {
-        getData(cep, autocompleteInputs);
+        getCepData(cep, autocompleteInputs);
     }
 });
 function validateCEP(cep) {
@@ -21,7 +21,7 @@ function validateCEP(cep) {
     const REGEX = /^[0-9]{8}$/;
     return REGEX.test(cep);
 }
-function getData(cep, callback) {
+function getCepData(cep, callback) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
             const response = yield fetch(`https://viacep.com.br/ws/${cep}/json/`);

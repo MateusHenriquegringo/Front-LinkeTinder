@@ -1,5 +1,8 @@
+import { modal } from "./main.js"
+import { openModal } from "./main.js"
+import { closeModal } from "./main.js"
+
 const button = document.getElementById("anunciarVaga")
-const modal = document.getElementById("vagaModal")
 const closeButton = document.getElementsByClassName("close")[0]
 
 const submitButton = document.getElementById("submit")
@@ -68,15 +71,5 @@ modal?.addEventListener('click', (e) => {
     }
 }
 )
-
-
-function openModal(): void {
-    modal ? modal.style.display = "flex" : console.log("erro")
-}
-
-function closeModal(): void {
-    modal ? modal.style.display = "none" : console.log("erro")
-}
-
 
 

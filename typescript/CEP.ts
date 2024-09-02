@@ -10,7 +10,7 @@ cepInput?.addEventListener('keyup', (e) => {
 
     let cep: string = cepInput.value
 
-    if (validateCEP(cep)) { getData(cep, autocompleteInputs) }
+    if (validateCEP(cep)) { getCepData(cep, autocompleteInputs) }
     
     }
 )
@@ -20,12 +20,12 @@ function validateCEP(cep: string): boolean {
 
     cep = cep.replace(/\D/g, '');
 
-    const REGEX = /^[0-9]{8}$/;
+    const REGEX: RegExp = /^[0-9]{8}$/;
 
     return REGEX.test(cep);
 }
 
-async function getData(cep: string, callback: Function) : Promise<void> {
+async function getCepData(cep: string, callback: Function) : Promise<void> {
 
     try {
         const response = await fetch(`https://viacep.com.br/ws/${cep}/json/`
