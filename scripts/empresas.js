@@ -2,13 +2,13 @@
 const button = document.getElementById("anunciarVaga");
 const modal = document.getElementById("vagaModal");
 const closeButton = document.getElementsByClassName("close")[0];
-const form = document.getElementById('vagaForm');
+const submitButton = document.getElementById("submit");
+const form = document.getElementById("vagaForm");
 button === null || button === void 0 ? void 0 : button.addEventListener('click', function (e) {
     e.preventDefault();
     openModal();
 });
-form === null || form === void 0 ? void 0 : form.addEventListener('submit', (e) => {
-    e.preventDefault();
+function collectData() {
     const nomeVaga = document.getElementById('nomeVaga');
     const descricao = document.getElementById('descricao');
     const empresa = document.getElementById('empresa');
@@ -25,8 +25,13 @@ form === null || form === void 0 ? void 0 : form.addEventListener('submit', (e) 
         cidade: cidade.value,
         estadoFederativo: estado.value
     };
+    return vagaData;
+}
+submitButton === null || submitButton === void 0 ? void 0 : submitButton.addEventListener('click', (e) => {
+    e.preventDefault();
     const uniqueKey = `vagaData_${new Date().getTime()}`;
-    localStorage.setItem(uniqueKey, JSON.stringify(vagaData));
+    const data = collectData();
+    localStorage.setItem(uniqueKey, JSON.stringify(data));
     alert("dados salvos com sucesso");
 });
 modal === null || modal === void 0 ? void 0 : modal.addEventListener('click', (e) => {

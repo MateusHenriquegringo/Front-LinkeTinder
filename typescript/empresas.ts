@@ -2,7 +2,9 @@ const button = document.getElementById("anunciarVaga")
 const modal = document.getElementById("vagaModal")
 const closeButton = document.getElementsByClassName("close")[0]
 
-const form = document.getElementById('vagaForm')
+const submitButton = document.getElementById("submit")
+
+const form = document.getElementById("vagaForm") as HTMLFormElement
 
 button?.addEventListener('click', function (e) {
 
@@ -21,9 +23,7 @@ interface VagaDeEmprego {
     estadoFederativo: string
 }
 
-form?.addEventListener('submit', (e) => {
-    e.preventDefault()
-
+function collectData(): VagaDeEmprego{
     const nomeVaga = document.getElementById('nomeVaga') as HTMLInputElement
     const descricao = document.getElementById('descricao') as HTMLInputElement
     const empresa = document.getElementById('empresa') as HTMLInputElement
@@ -42,10 +42,19 @@ form?.addEventListener('submit', (e) => {
         estadoFederativo: estado.value
     };
 
+    return vagaData
+}
+
+submitButton?.addEventListener('click', (e) => {
+
+    e.preventDefault()
+
     const uniqueKey: string = `vagaData_${new Date().getTime()}`;
 
-    localStorage.setItem(uniqueKey, JSON.stringify(vagaData))
-    
+    const data: VagaDeEmprego = collectData()
+
+    localStorage.setItem(uniqueKey, JSON.stringify(data))
+
     alert("dados salvos com sucesso")
 
 })
