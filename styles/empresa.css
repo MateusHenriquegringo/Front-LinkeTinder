@@ -90,6 +90,10 @@ button:hover,
   align-items: center;
 }
 
+.modal h2{
+  padding-bottom:1em;
+}
+
 .modal-content {
   background-color: #fefefe;
   margin: auto;
