@@ -27,3 +27,16 @@ submitButtonVaga === null || submitButtonVaga === void 0 ? void 0 : submitButton
     localStorage.setItem(uniqueKey, JSON.stringify(data));
     alert("dados salvos com sucesso");
 });
+function fetchDataOnLocalStorage() {
+    let candidatos = [];
+    for (let i = 0; i < localStorage.length; i++) {
+        const key = localStorage.key(i);
+        if (key && key.startsWith('candidatoData_')) {
+            const jsonString = localStorage.getItem(key);
+            if (jsonString)
+                candidatos.push(JSON.parse(jsonString));
+        }
+    }
+    console.log(candidatos);
+}
+fetchDataOnLocalStorage();

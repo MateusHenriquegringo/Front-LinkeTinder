@@ -1,16 +1,21 @@
-const submitButtonCandidato : HTMLElement | null = document.getElementById("submit")
-const competenciasButtons : HTMLCollectionOf<Element> = document.getElementsByClassName("competencia-btn")
+const submitButtonCandidato: HTMLElement | null = document.getElementById("submit")
+const competenciasButtons: HTMLCollectionOf<Element> = document.getElementsByClassName("competencia-btn")
 
 
-function addClickListenersToButtons(buttons: HTMLCollectionOf<Element>) {
-    Array.from(buttons).forEach(button => {
-        button.addEventListener('click', () => {
-            button.classList.toggle('selected');
-        });
+Array.from(competenciasButtons).forEach(button => {
+    button.addEventListener('click', () => {
+        button.classList.toggle('selected');
+    });
+});
+
+
+
+function clearCompetenciasStyle(): void {
+    Array.from(competenciasButtons).forEach(button => {
+        button.classList.remove('selected')
     });
 }
 
-addClickListenersToButtons(competenciasButtons);
 
 interface Candidato {
 
@@ -20,70 +25,54 @@ interface Candidato {
     cidade: string,
     estado: string,
     formacao: string,
-
-    competencias: Array<Competencias>
+    competencias: Array<string>
 
 }
-enum Competencias {
-    JavaScript = "JavaScript",
-    TypeScript = "TypeScript",
-    Python = "Python",
-    Java = "Java",
-    CSharp = "C#",
-    PHP = "PHP",
-    Kotlin = "Kotlin",
-    Swift = "Swift",
-    SQL = "SQL",
-    NoSQL = "NoSQL",
-    HTML = "HTML",
-    CSS = "CSS",
-    React = "React",
-    Angular = "Angular",
-    Vue = "Vue",
-    NodeJS = "Node.js",
-    SpringBoot = "Spring Boot",
-    Django = "Django",
-    Docker = "Docker",
-    Kubernetes = "Kubernetes",
-    AWS = "AWS",
-    Azure = "Azure",
-    Git = "Git",
-    DevOps = "DevOps",
-    TDD = "Test-Driven Development",
-    CI_CD = "Continuous Integration/Continuous Delivery"
+
+function collectCompetencias(): string[] {
+    return Array.from(competenciasButtons)
+        .filter(competenciasButton => competenciasButton.classList.contains('selected'))
+        .map(competencia => competencia.textContent?.trim() ?? "");
 }
 
-// function collectCandidatoData(): Candidato {
-//     const nomeVaga = document.getElementById('nomeVaga') as HTMLInputElement
-//     const descricao = document.getElementById('descricao') as HTMLInputElement
-//     const empresa = document.getElementById('empresa') as HTMLInputElement
-//     const email = document.getElementById('email') as HTMLInputElement
-//     const cep = document.getElementById('cep') as HTMLInputElement
-//     const cidade = document.getElementById('cidade') as HTMLInputElement
-//     const estado = document.getElementById('estadoFederativo') as HTMLInputElement
 
-//     const vagaData: VagaDeEmprego = {
-//         nome: nomeVaga.value,
-//         descricao: descricao.value,
-//         empresa: empresa.value,
-//         email: email.value,
-//         cep: cep.value,
-//         cidade: cidade.value,
-//         estadoFederativo: estado.value
-//     };
+function collectCandidatoData(): Candidato {
+    const nome = document.getElementById('nome') as HTMLInputElement
+    const email = document.getElementById('email') as HTMLInputElement
+    const cep = document.getElementById('cep') as HTMLInputElement
+    const cidade = document.getElementById('cidade') as HTMLInputElement
+    const estadoFederativo = document.getElementById('estadoFederativo') as HTMLInputElement
+    const formacao = document.getElementById('formacao') as HTMLInputElement
 
-// }
 
-// submitButtonCandidato?.addEventListener('click', (e) => {
+    const candidatoData: Candidato = {
 
-//     e.preventDefault()
+        nome: nome.value,
+        email: email.value,
+        cep: cep.value,
+        cidade: cidade.value,
+        estado: estadoFederativo.value,
+        formacao: formacao.value,
+        competencias: collectCompetencias()
 
-//     const uniqueKey: string = `candidatoData_${new Date().getTime()}`;
+    };
 
-//     const data: Candidato = collectCandidatoData()
+    return candidatoData
 
-//     localStorage.setItem(uniqueKey, JSON.stringify(data))
+}
 
-//     alert("dados salvos com sucesso")
+submitButtonCandidato?.addEventListener('click', (e) => {
 
-// })
+    e.preventDefault()
+
+    const uniqueKey: string = `candidatoData_${new Date().getTime()}`;
+
+    const data: Candidato = collectCandidatoData()
+
+    localStorage.setItem(uniqueKey, JSON.stringify(data))
+
+    alert("dados salvos com sucesso")
+
+    clearCompetenciasStyle()
+
+})

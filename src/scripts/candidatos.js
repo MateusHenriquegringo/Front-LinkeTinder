@@ -1,65 +1,44 @@
 "use strict";
 const submitButtonCandidato = document.getElementById("submit");
 const competenciasButtons = document.getElementsByClassName("competencia-btn");
-function addClickListenersToButtons(buttons) {
-    Array.from(buttons).forEach(button => {
-        button.addEventListener('click', () => {
-            button.classList.toggle('selected');
-        });
+Array.from(competenciasButtons).forEach(button => {
+    button.addEventListener('click', () => {
+        button.classList.toggle('selected');
+    });
+});
+function clearCompetenciasStyle() {
+    Array.from(competenciasButtons).forEach(button => {
+        button.classList.remove('selected');
     });
 }
-addClickListenersToButtons(competenciasButtons);
-var Competencias;
-(function (Competencias) {
-    Competencias["JavaScript"] = "JavaScript";
-    Competencias["TypeScript"] = "TypeScript";
-    Competencias["Python"] = "Python";
-    Competencias["Java"] = "Java";
-    Competencias["CSharp"] = "C#";
-    Competencias["PHP"] = "PHP";
-    Competencias["Kotlin"] = "Kotlin";
-    Competencias["Swift"] = "Swift";
-    Competencias["SQL"] = "SQL";
-    Competencias["NoSQL"] = "NoSQL";
-    Competencias["HTML"] = "HTML";
-    Competencias["CSS"] = "CSS";
-    Competencias["React"] = "React";
-    Competencias["Angular"] = "Angular";
-    Competencias["Vue"] = "Vue";
-    Competencias["NodeJS"] = "Node.js";
-    Competencias["SpringBoot"] = "Spring Boot";
-    Competencias["Django"] = "Django";
-    Competencias["Docker"] = "Docker";
-    Competencias["Kubernetes"] = "Kubernetes";
-    Competencias["AWS"] = "AWS";
-    Competencias["Azure"] = "Azure";
-    Competencias["Git"] = "Git";
-    Competencias["DevOps"] = "DevOps";
-    Competencias["TDD"] = "Test-Driven Development";
-    Competencias["CI_CD"] = "Continuous Integration/Continuous Delivery";
-})(Competencias || (Competencias = {}));
-// function collectCandidatoData(): Candidato {
-//     const nomeVaga = document.getElementById('nomeVaga') as HTMLInputElement
-//     const descricao = document.getElementById('descricao') as HTMLInputElement
-//     const empresa = document.getElementById('empresa') as HTMLInputElement
-//     const email = document.getElementById('email') as HTMLInputElement
-//     const cep = document.getElementById('cep') as HTMLInputElement
-//     const cidade = document.getElementById('cidade') as HTMLInputElement
-//     const estado = document.getElementById('estadoFederativo') as HTMLInputElement
-//     const vagaData: VagaDeEmprego = {
-//         nome: nomeVaga.value,
-//         descricao: descricao.value,
-//         empresa: empresa.value,
-//         email: email.value,
-//         cep: cep.value,
-//         cidade: cidade.value,
-//         estadoFederativo: estado.value
-//     };
-// }
-// submitButtonCandidato?.addEventListener('click', (e) => {
-//     e.preventDefault()
-//     const uniqueKey: string = `candidatoData_${new Date().getTime()}`;
-//     const data: Candidato = collectCandidatoData()
-//     localStorage.setItem(uniqueKey, JSON.stringify(data))
-//     alert("dados salvos com sucesso")
-// })
+function collectCompetencias() {
+    return Array.from(competenciasButtons)
+        .filter(competenciasButton => competenciasButton.classList.contains('selected'))
+        .map(competencia => { var _a, _b; return (_b = (_a = competencia.textContent) === null || _a === void 0 ? void 0 : _a.trim()) !== null && _b !== void 0 ? _b : ""; });
+}
+function collectCandidatoData() {
+    const nome = document.getElementById('nome');
+    const email = document.getElementById('email');
+    const cep = document.getElementById('cep');
+    const cidade = document.getElementById('cidade');
+    const estadoFederativo = document.getElementById('estadoFederativo');
+    const formacao = document.getElementById('formacao');
+    const candidatoData = {
+        nome: nome.value,
+        email: email.value,
+        cep: cep.value,
+        cidade: cidade.value,
+        estado: estadoFederativo.value,
+        formacao: formacao.value,
+        competencias: collectCompetencias()
+    };
+    return candidatoData;
+}
+submitButtonCandidato === null || submitButtonCandidato === void 0 ? void 0 : submitButtonCandidato.addEventListener('click', (e) => {
+    e.preventDefault();
+    const uniqueKey = `candidatoData_${new Date().getTime()}`;
+    const data = collectCandidatoData();
+    localStorage.setItem(uniqueKey, JSON.stringify(data));
+    alert("dados salvos com sucesso");
+    clearCompetenciasStyle();
+});

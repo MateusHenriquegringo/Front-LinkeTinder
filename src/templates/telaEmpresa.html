@@ -1,104 +1,106 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Empresas</title>
-    <link rel="stylesheet" href="../styles/reset.css">
-    <link rel="stylesheet" href="../global.css">
-    <link rel="stylesheet" href="../styles/empresa.css">
-</head>
-<body>
-
-
-    
+    <link rel="stylesheet" href="../styles/reset.css" />
+    <link rel="stylesheet" href="../global.css" />
+    <link rel="stylesheet" href="../styles/empresa.css" />
+  </head>
+  <body>
     <main>
+      <div class="head">
+        <a href="../templates/index.html">Voltar</a>
+        <h2>Candidatos</h2>
+      </div>
 
-        <div class="head">
-            <a href="../templates/index.html">Voltar</a>
-            <h2>Candidatos</h2>
-        </div>
+      <ul>
+        <li>
+          <div class="candidato">
+            <div class="formacao">
+              <p>Formacao:</p>
+              <span>Analise e desenvolvimento de sistemas</span>
+            </div>
+            <div class="competencias">
+              <p>Competencias:</p>
+              <ul>
+                <li>Java</li>
+                <li>Javascript</li>
+              </ul>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="candidato">
+            <div class="formacao">
+              <p>Formacao:</p>
+              <span>Ciencias da Computacao</span>
+            </div>
+            <div class="competencias">
+              <p>Competencias:</p>
+              <ul>
+                <li>Python</li>
+                <li>Css</li>
+              </ul>
+            </div>
+          </div>
+        </li>
+      </ul>
 
-        <ul>
-            <li>candidato 1</li>
-            <li>candidato 1</li>
-            <li>candidato 1</li>
-            <li>candidato 1</li>
-            <li>candidato 1</li>
-            <li>candidato 1</li>
-            <li>candidato 1</li>
-            <li>candidato 1</li>
-            <li>candidato 1</li>
-            <li>candidato 1</li>
-            <li>candidato 1</li>
-            <li>candidato 1</li>
-            <li>candidato 1</li>
-            <li>candidato 1</li>
-            <li>candidato 1</li>
-            <li>candidato 1</li>
-            <li>candidato 1</li>
-            <li>candidato 1</li>
-            <li>candidato 1</li>
-            <li>candidato 1</li>
-            <li>candidato 1</li>
-            <li>candidato 1</li>
-            <li>candidato 1</li>
-        </ul>
-
-
-        <h2>Anunciar</h2>
-        <div>
-    
-            <button id="cadastrar">
-                Anunciar uma vaga
-            </button>
-    
-        </div>
+      <h2>Anunciar</h2>
+      <div>
+        <button id="cadastrar">Anunciar uma vaga</button>
+      </div>
     </main>
 
     <!-- modal -->
     <div id="modal" class="modal">
-        <div class="modal-content">
-          <span class="close">&times;</span>
-          <h2>Nova Vaga</h2>
-          <form id="vagaForm">
-              <div class="form-group">
-                  <label for="nomeVaga">Nome da Vaga:</label>
-                  <input type="text" id="nomeVaga" name="nomeVaga" required>
-              </div>
-              <div class="form-group">
-                  <label for="descricao">Descrição:</label>
-                  <input type="text" id="descricao" name="descricao" required>
-              </div>
-              <div class="form-group">
-                  <label for="empresa">Empresa:</label>
-                  <input type="text" id="empresa" name="empresa" required>
-              </div>
-              <div class="form-group">
-                  <label for="email">Email:</label>
-                  <input type="email" id="email" name="email" required>
-              </div>
-              <div class="form-group">
-                <label for="cep">CEP:</label>
-                <input type="text" id="cep" name="cep" required>
-            </div>
-              <div class="form-group">
-                  <label for="cidade">Cidade:</label>
-                  <input type="text" id="cidade" name="cidade" required>
-              </div>
-              <div class="form-group">
-                  <label for="estadoFederativo">Estado Federativo:</label>
-                  <input type="text" id="estadoFederativo" name="estadoFederativo" required>
-              </div>
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Nova Vaga</h2>
+        <form id="vagaForm">
+          <div class="form-group">
+            <label for="nomeVaga">Nome da Vaga:</label>
+            <input type="text" id="nomeVaga" name="nomeVaga" required />
+          </div>
+          <div class="form-group">
+            <label for="descricao">Descrição:</label>
+            <input type="text" id="descricao" name="descricao" required />
+          </div>
+          <div class="form-group">
+            <label for="empresa">Empresa:</label>
+            <input type="text" id="empresa" name="empresa" required />
+          </div>
+          <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required />
+          </div>
+          <div class="form-group">
+            <label for="cep">CEP:</label>
+            <input type="text" id="cep" name="cep" required />
+          </div>
+          <div class="form-group">
+            <label for="cidade">Cidade:</label>
+            <input type="text" id="cidade" name="cidade" required />
+          </div>
+          <div class="form-group">
+            <label for="estadoFederativo">Estado Federativo:</label>
+            <input
+              type="text"
+              id="estadoFederativo"
+              name="estadoFederativo"
+              required
+            />
+          </div>
 
-              <button id="submit" type="submit">Salvar</button>
-          </form>
-        </div>
-      
+          <button id="submit" type="submit">Salvar</button>
+        </form>
+      </div>
     </div>
 
     <script src="../scripts/main.js"></script>
-    <script src="../scripts/empresas.js" ></script>
+    <script src="../scripts/empresas.js"></script>
     <script src="../scripts/CEP.js"></script>
-</body>
+  </body>
 </html>

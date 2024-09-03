@@ -51,6 +51,25 @@ submitButtonVaga?.addEventListener('click', (e) => {
 
 })
 
+function fetchDataOnLocalStorage () : Array<JSON> {
+    
+    let candidatos : Array<JSON> = []
+
+    for(let i: number = 0; i < localStorage.length; i++){
+
+        const key  :string | null = localStorage.key(i)
+
+        if(key && key.startsWith('candidatoData_')) { 
+            const jsonString: string|null = localStorage.getItem(key)
+            
+            if(jsonString) candidatos.push(JSON.parse(jsonString))
+         }
+
+    }
+
+    return candidatos
+
+}
 
 
 

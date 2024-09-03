@@ -53,7 +53,7 @@ ul {
   overflow-y: auto;
 }
 
-li {
+main > ul > li {
   background-color: #f9f9f9;
   margin: 5px 0;
   padding: 10px;
@@ -145,4 +145,17 @@ input[type="text"], input[type="email"] {
 
 .modal button:hover {
   background-color: #45a049;
+}
+
+.candidato .formacao p, .candidato .competencias p {
+    font-weight: 700;
+}
+
+.candidato .formacao span, .candidato .competencias li{
+  padding: 4px;
+}
+.candidato {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
