@@ -7,13 +7,13 @@
     <link rel="stylesheet" href="../styles/reset.css">
     <link rel="stylesheet" href="../global.css">
     <!-- replace to a global css -->
-    <link rel="stylesheet" href="../styles/empresa.css">
+    <link rel="stylesheet" href="../styles/candidato.css">
 </head>
 <body>
 
     <main>
         <div class="head">
-            <a href="../index.html">Voltar</a>
+            <a href="../templates/index.html">Voltar</a>
             <h2>Vagas Disponiveis</h2>
         </div>
 
@@ -38,7 +38,7 @@
 
         <h2>Cadastro</h2>
         <div>
-            <button id="cadastrarCandidato">
+            <button id="cadastrar">
                 Cadastrar um candidato
             </button>
         </div>
@@ -67,8 +67,8 @@
                     <input type="text" id="cidade" name="cidade" required>
                 </div>
                 <div class="form-group">
-                    <label for="estado">Estado:</label>
-                    <input type="text" id="estado" name="estado" required>
+                    <label for="estadoFederativo">Estado:</label>
+                    <input type="text" id="estadoFederativo" name="estadoFederativo" required>
                 </div>
                 <div class="form-group">
                     <label for="formacao">Formacao:</label>
@@ -76,14 +76,44 @@
                 </div>
                 <div class="form-group">
                     <label for="competencias">Competencias:</label>
-                    <input type="text" id="competencias" name="competencias" required>
                 </div>
 
+                <div class="competencias">
+                    <div class="competencia-btn">JavaScript</div>
+                    <div class="competencia-btn">TypeScript</div>
+                    <div class="competencia-btn">Python</div>
+                    <div class="competencia-btn">Java</div>
+                    <div class="competencia-btn">C#</div>
+                    <div class="competencia-btn">PHP</div>
+                    <div class="competencia-btn">Kotlin</div>
+                    <div class="competencia-btn">Swift</div>
+                    <div class="competencia-btn">SQL</div>
+                    <div class="competencia-btn">NoSQL</div>
+                    <div class="competencia-btn">HTML</div>
+                    <div class="competencia-btn">CSS</div>
+                    <div class="competencia-btn">React</div>
+                    <div class="competencia-btn">Angular</div>
+                    <div class="competencia-btn">Vue</div>
+                    <div class="competencia-btn">Node.js</div>
+                    <div class="competencia-btn">Spring Boot</div>
+                    <div class="competencia-btn">Django</div>
+                    <div class="competencia-btn">Docker</div>
+                    <div class="competencia-btn">Kubernetes</div>
+                    <div class="competencia-btn">AWS</div>
+                    <div class="competencia-btn">Azure</div>
+                    <div class="competencia-btn">Git</div>
+                    <div class="competencia-btn">DevOps</div>
+                    <div class="competencia-btn">Test-Driven Development</div>
+                    <div class="competencia-btn">CI/CD</div>
+                </div>
                 <button id="submit" type="submit">Salvar</button>
             </form>
         </div>
     </div>
 
-    <script src="../scripts/candidato.js"></script>
+    <script src="../scripts/main.js"></script>
+    <script src="../scripts/candidatos.js"></script>
+    <script src="../scripts/CEP.js"></script>
+
 </body>
 </html>

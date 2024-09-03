@@ -146,3 +146,27 @@ main {
   .modal button:hover {
     background-color: #45a049;
   }
+
+.competencias {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 10px;
+}
+.competencia-btn {
+    padding: 8px 12px;
+    border: 1px solid black;
+    border-radius: 20px;
+    background-color: #ffffff;
+    color: black;
+    text-align: center;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s, color 0.3s;
+}
+.competencia-btn:hover, .selected {
+    border: 1px solid #007bff;
+    background-color: #007bff;
+    color: #ffffff;
+}
+

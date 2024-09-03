@@ -1,20 +1,9 @@
-import { modal } from "./main.js"
-import { openModal } from "./main.js"
-import { closeModal } from "./main.js"
 
-const button = document.getElementById("anunciarVaga")
-const closeButton = document.getElementsByClassName("close")[0]
-
-const submitButton = document.getElementById("submit")
+const submitButtonVaga = document.getElementById("submit")
 
 const form = document.getElementById("vagaForm") as HTMLFormElement
 
-button?.addEventListener('click', function (e) {
 
-    e.preventDefault()
-    openModal()
-
-})
 
 interface VagaDeEmprego {
     nome: string,
@@ -26,7 +15,7 @@ interface VagaDeEmprego {
     estadoFederativo: string
 }
 
-function collectData(): VagaDeEmprego{
+function collectVagaData(): VagaDeEmprego{
     const nomeVaga = document.getElementById('nomeVaga') as HTMLInputElement
     const descricao = document.getElementById('descricao') as HTMLInputElement
     const empresa = document.getElementById('empresa') as HTMLInputElement
@@ -48,13 +37,13 @@ function collectData(): VagaDeEmprego{
     return vagaData
 }
 
-submitButton?.addEventListener('click', (e) => {
+submitButtonVaga?.addEventListener('click', (e) => {
 
     e.preventDefault()
 
     const uniqueKey: string = `vagaData_${new Date().getTime()}`;
 
-    const data: VagaDeEmprego = collectData()
+    const data: VagaDeEmprego = collectVagaData()
 
     localStorage.setItem(uniqueKey, JSON.stringify(data))
 
@@ -63,13 +52,6 @@ submitButton?.addEventListener('click', (e) => {
 })
 
 
-modal?.addEventListener('click', (e) => {
-    e.preventDefault()
 
-    if (e.target == modal || e.target == closeButton) {
-        closeModal()
-    }
-}
-)
 
 

@@ -1,58 +1,43 @@
-const submitButtonCandidato : HTMLElement | null = document.getElementById("submit")
-const competenciasButtons : HTMLCollectionOf<Element> = document.getElementsByClassName("competencia-btn")
-
-
-function addClickListenersToButtons(buttons: HTMLCollectionOf<Element>) {
+"use strict";
+const submitButtonCandidato = document.getElementById("submit");
+const competenciasButtons = document.getElementsByClassName("competencia-btn");
+function addClickListenersToButtons(buttons) {
     Array.from(buttons).forEach(button => {
         button.addEventListener('click', () => {
             button.classList.toggle('selected');
         });
     });
 }
-
 addClickListenersToButtons(competenciasButtons);
-
-interface Candidato {
-
-    nome: string,
-    email: string,
-    cep: string,
-    cidade: string,
-    estado: string,
-    formacao: string,
-
-    competencias: Array<Competencias>
-
-}
-enum Competencias {
-    JavaScript = "JavaScript",
-    TypeScript = "TypeScript",
-    Python = "Python",
-    Java = "Java",
-    CSharp = "C#",
-    PHP = "PHP",
-    Kotlin = "Kotlin",
-    Swift = "Swift",
-    SQL = "SQL",
-    NoSQL = "NoSQL",
-    HTML = "HTML",
-    CSS = "CSS",
-    React = "React",
-    Angular = "Angular",
-    Vue = "Vue",
-    NodeJS = "Node.js",
-    SpringBoot = "Spring Boot",
-    Django = "Django",
-    Docker = "Docker",
-    Kubernetes = "Kubernetes",
-    AWS = "AWS",
-    Azure = "Azure",
-    Git = "Git",
-    DevOps = "DevOps",
-    TDD = "Test-Driven Development",
-    CI_CD = "Continuous Integration/Continuous Delivery"
-}
-
+var Competencias;
+(function (Competencias) {
+    Competencias["JavaScript"] = "JavaScript";
+    Competencias["TypeScript"] = "TypeScript";
+    Competencias["Python"] = "Python";
+    Competencias["Java"] = "Java";
+    Competencias["CSharp"] = "C#";
+    Competencias["PHP"] = "PHP";
+    Competencias["Kotlin"] = "Kotlin";
+    Competencias["Swift"] = "Swift";
+    Competencias["SQL"] = "SQL";
+    Competencias["NoSQL"] = "NoSQL";
+    Competencias["HTML"] = "HTML";
+    Competencias["CSS"] = "CSS";
+    Competencias["React"] = "React";
+    Competencias["Angular"] = "Angular";
+    Competencias["Vue"] = "Vue";
+    Competencias["NodeJS"] = "Node.js";
+    Competencias["SpringBoot"] = "Spring Boot";
+    Competencias["Django"] = "Django";
+    Competencias["Docker"] = "Docker";
+    Competencias["Kubernetes"] = "Kubernetes";
+    Competencias["AWS"] = "AWS";
+    Competencias["Azure"] = "Azure";
+    Competencias["Git"] = "Git";
+    Competencias["DevOps"] = "DevOps";
+    Competencias["TDD"] = "Test-Driven Development";
+    Competencias["CI_CD"] = "Continuous Integration/Continuous Delivery";
+})(Competencias || (Competencias = {}));
 // function collectCandidatoData(): Candidato {
 //     const nomeVaga = document.getElementById('nomeVaga') as HTMLInputElement
 //     const descricao = document.getElementById('descricao') as HTMLInputElement
@@ -61,7 +46,6 @@ enum Competencias {
 //     const cep = document.getElementById('cep') as HTMLInputElement
 //     const cidade = document.getElementById('cidade') as HTMLInputElement
 //     const estado = document.getElementById('estadoFederativo') as HTMLInputElement
-
 //     const vagaData: VagaDeEmprego = {
 //         nome: nomeVaga.value,
 //         descricao: descricao.value,
@@ -71,19 +55,11 @@ enum Competencias {
 //         cidade: cidade.value,
 //         estadoFederativo: estado.value
 //     };
-
 // }
-
 // submitButtonCandidato?.addEventListener('click', (e) => {
-
 //     e.preventDefault()
-
 //     const uniqueKey: string = `candidatoData_${new Date().getTime()}`;
-
 //     const data: Candidato = collectCandidatoData()
-
 //     localStorage.setItem(uniqueKey, JSON.stringify(data))
-
 //     alert("dados salvos com sucesso")
-
 // })

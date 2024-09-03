@@ -1,14 +1,7 @@
-import { modal } from "./main.js";
-import { openModal } from "./main.js";
-import { closeModal } from "./main.js";
-const button = document.getElementById("anunciarVaga");
-const closeButton = document.getElementsByClassName("close")[0];
+"use strict";
+const submitButtonVaga = document.getElementById("submit");
 const form = document.getElementById("vagaForm");
-button === null || button === void 0 ? void 0 : button.addEventListener('click', function (e) {
-    e.preventDefault();
-    openModal();
-});
-function collectData() {
+function collectVagaData() {
     const nomeVaga = document.getElementById('nomeVaga');
     const descricao = document.getElementById('descricao');
     const empresa = document.getElementById('empresa');
@@ -27,9 +20,10 @@ function collectData() {
     };
     return vagaData;
 }
-modal === null || modal === void 0 ? void 0 : modal.addEventListener('click', (e) => {
+submitButtonVaga === null || submitButtonVaga === void 0 ? void 0 : submitButtonVaga.addEventListener('click', (e) => {
     e.preventDefault();
-    if (e.target == modal || e.target == closeButton) {
-        closeModal();
-    }
+    const uniqueKey = `vagaData_${new Date().getTime()}`;
+    const data = collectVagaData();
+    localStorage.setItem(uniqueKey, JSON.stringify(data));
+    alert("dados salvos com sucesso");
 });
