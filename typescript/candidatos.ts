@@ -1,6 +1,33 @@
 const submitButtonCandidato: HTMLElement | null = document.getElementById("submit")
 const competenciasButtons: HTMLCollectionOf<Element> = document.getElementsByClassName("competencia-btn")
+const modalCandidato: HTMLElement | null = document.getElementById("modalCandidato")
+const closeCandidatoButton : HTMLElement | null = document.getElementById("btnCloseCandidato")
+const btnOpenModalCandidato: HTMLElement | null = document.getElementById("cadastrarCandidato")
 
+
+btnOpenModalCandidato?.addEventListener('click', (e)=> {
+    e.preventDefault()
+
+    openCandidatoModal()
+
+})
+
+function openCandidatoModal(): void {
+    modalCandidato ? modalCandidato.style.display = "flex" : console.log("erro")
+}
+
+function closeCandidatoModal(): void {
+    modalCandidato ? modalCandidato.style.display = "none" : console.log("erro")
+}
+
+modalCandidato?.addEventListener('click', (e) => {
+    e.preventDefault()
+
+    if (e.target == modalCandidato || e.target == closeCandidatoButton) {
+        closeCandidatoModal()
+    }
+}
+)
 
 Array.from(competenciasButtons).forEach(button => {
     button.addEventListener('click', () => {
@@ -70,7 +97,7 @@ submitButtonCandidato?.addEventListener('click', (e) => {
     const data: Candidato = collectCandidatoData()
 
     localStorage.setItem(uniqueKey, JSON.stringify(data))
-
+    
     alert("dados salvos com sucesso")
 
     clearCompetenciasStyle()

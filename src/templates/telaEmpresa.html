@@ -15,62 +15,26 @@
         <h2>Candidatos</h2>
       </div>
 
-      <ul>
-        <li>
-          <div class="candidato">
-            <div class="formacao">
-              <p>Formacao:</p>
-              <span>Analise e desenvolvimento de sistemas</span>
-            </div>
-            <div class="competencias">
-              <p>Competencias:</p>
-              <ul>
-                <li>Java</li>
-                <li>Javascript</li>
-              </ul>
-            </div>
-          </div>
-        </li>
-        <li>
-          <div class="candidato">
-            <div class="formacao">
-              <p>Formacao:</p>
-              <span>Ciencias da Computacao</span>
-            </div>
-            <div class="competencias">
-              <p>Competencias:</p>
-              <ul>
-                <li>Python</li>
-                <li>Css</li>
-              </ul>
-            </div>
-          </div>
-        </li>
+      <ul id="candidatos">
       </ul>
 
       <h2>Anunciar</h2>
       <div>
-        <button id="cadastrar">Anunciar uma vaga</button>
+
+        <button id="cadastrarVaga">Anunciar uma vaga</button>
+        <button id="cadastrarEmpresa">Cadastrar Empresa</button>
+
       </div>
     </main>
 
-    <!-- modal -->
-    <div id="modal" class="modal">
+    <div id="modalEmpresa" class="modal">
       <div class="modal-content">
-        <span class="close">&times;</span>
-        <h2>Nova Vaga</h2>
+        <span id="btnCloseEmpresa" class="close">&times;</span>
+        <h2>Nova Empresa</h2>
         <form id="vagaForm">
           <div class="form-group">
-            <label for="nomeVaga">Nome da Vaga:</label>
-            <input type="text" id="nomeVaga" name="nomeVaga" required />
-          </div>
-          <div class="form-group">
-            <label for="descricao">Descrição:</label>
-            <input type="text" id="descricao" name="descricao" required />
-          </div>
-          <div class="form-group">
-            <label for="empresa">Empresa:</label>
-            <input type="text" id="empresa" name="empresa" required />
+            <label for="empresaNome">Empresa:</label>
+            <input type="text" id="empresaNome" name="empresaNome" required />
           </div>
           <div class="form-group">
             <label for="email">Email:</label>
@@ -92,6 +56,29 @@
               name="estadoFederativo"
               required
             />
+            <button id="submitEmpresa" type="submit">Salvar</button>
+
+          </div>
+        </div>
+    </div>
+
+    <div id="modalVaga" class="modal">
+      <div class="modal-content">
+        <span id="btnCloseVaga" class="close">&times;</span>
+        <h2>Nova Vaga</h2>
+        <form id="vagaForm">
+          <div class="form-group">
+            <label for="nomeVaga">Nome da Vaga:</label>
+            <input type="text" id="nomeVaga" name="nomeVaga" required />
+          </div>
+          <div class="form-group">
+            <label for="descricao">Descrição:</label>
+            <input type="text" id="descricao" name="descricao" required />
+          </div>
+          <div class="form-group">
+            <label for="escolhaEmpresa">Empresa:</label>
+            <select id="escolhaEmpresa" name="escolhaEmpresa">
+            </select>
           </div>
 
           <button id="submit" type="submit">Salvar</button>
@@ -99,8 +86,8 @@
       </div>
     </div>
 
-    <script src="../scripts/main.js"></script>
     <script src="../scripts/empresas.js"></script>
+    <script type="module" src="../scripts/modalEmpresa.js"></script>
     <script src="../scripts/CEP.js"></script>
   </body>
 </html>
