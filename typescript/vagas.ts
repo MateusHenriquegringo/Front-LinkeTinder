@@ -1,37 +1,15 @@
+import { Modal } from "./ModalClass.js"
+
 const candidatosUl = document.getElementById("candidatos")
 const submitButtonVaga = document.getElementById("submit")
 
 
 const buttonOpenModalVaga = document.getElementById("cadastrarVaga")
-const closeVagaButton = document.getElementById("btnCloseVaga")
+const buttonCloseVaga = document.getElementById("btnCloseVaga")
 const modalVaga = document.getElementById("modalVaga")
 
+const modal: Modal = new Modal(buttonOpenModalVaga, modalVaga, buttonCloseVaga)
 
-buttonOpenModalVaga?.addEventListener('click', function (e) {
-    
-    e.preventDefault()
-    openVagaModal()
-
-})
-
-
-function openVagaModal(): void {
-    modalVaga ? modalVaga.style.display = "flex" : console.log("erro")
-
-}
-
-function closeVagaModal(): void {
-    modalVaga ? modalVaga.style.display = "none" : console.log("erro")
-}
-
-modalVaga?.addEventListener('click', (e) => {
-    e.preventDefault()
-
-    if (e.target == modalVaga || e.target == closeVagaButton) {
-        closeVagaModal()
-    }
-}
-)
 interface VagaDeEmprego {
     nome: string,
     descricao: string,

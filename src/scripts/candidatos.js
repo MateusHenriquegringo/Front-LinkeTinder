@@ -1,35 +1,10 @@
-"use strict";
+import { ModalCandidato } from "./ModalClass.js";
 const submitButtonCandidato = document.getElementById("submit");
 const competenciasButtons = document.getElementsByClassName("competencia-btn");
 const modalCandidato = document.getElementById("modalCandidato");
 const closeCandidatoButton = document.getElementById("btnCloseCandidato");
 const btnOpenModalCandidato = document.getElementById("cadastrarCandidato");
-btnOpenModalCandidato === null || btnOpenModalCandidato === void 0 ? void 0 : btnOpenModalCandidato.addEventListener('click', (e) => {
-    e.preventDefault();
-    openCandidatoModal();
-});
-function openCandidatoModal() {
-    modalCandidato ? modalCandidato.style.display = "flex" : console.log("erro");
-}
-function closeCandidatoModal() {
-    modalCandidato ? modalCandidato.style.display = "none" : console.log("erro");
-}
-modalCandidato === null || modalCandidato === void 0 ? void 0 : modalCandidato.addEventListener('click', (e) => {
-    e.preventDefault();
-    if (e.target == modalCandidato || e.target == closeCandidatoButton) {
-        closeCandidatoModal();
-    }
-});
-Array.from(competenciasButtons).forEach(button => {
-    button.addEventListener('click', () => {
-        button.classList.toggle('selected');
-    });
-});
-function clearCompetenciasStyle() {
-    Array.from(competenciasButtons).forEach(button => {
-        button.classList.remove('selected');
-    });
-}
+const modal = new ModalCandidato(btnOpenModalCandidato, modalCandidato, closeCandidatoButton, competenciasButtons);
 function collectCompetencias() {
     return Array.from(competenciasButtons)
         .filter(competenciasButton => competenciasButton.classList.contains('selected'))
@@ -59,5 +34,5 @@ submitButtonCandidato === null || submitButtonCandidato === void 0 ? void 0 : su
     const data = collectCandidatoData();
     localStorage.setItem(uniqueKey, JSON.stringify(data));
     alert("dados salvos com sucesso");
-    clearCompetenciasStyle();
+    modal.clearCompetenciasStyle();
 });

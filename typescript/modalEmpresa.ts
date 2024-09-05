@@ -1,11 +1,13 @@
-const addEmpresa = document.getElementById('cadastrarEmpresa')
+import { Modal } from "./ModalClass.js"
+
+const buttonOpenModalEmpresa = document.getElementById('cadastrarEmpresa')
 const submitEmpresa = document.getElementById("submitEmpresa")
 const modalEmpresa = document.getElementById('modalEmpresa')
-const buttonCloseEmpresaModal = document.getElementById("btnCloseEmpresa")
+const buttonCloseEmpresa = document.getElementById("btnCloseEmpresa")
 
 const selectOption = document.getElementById("escolhaEmpresa")
 
-export class Empresa implements IEmpresa {
+export class Empresa {
 
     constructor (
         public nome: string,
@@ -14,37 +16,12 @@ export class Empresa implements IEmpresa {
         public cidade: string,
         public estadoFederativo: string
     ){
-
     }
 
 }
 
-interface IEmpresa {
-    nome: string
-    email: string
-    cep: string
-    cidade: string
-    estadoFederativo: string
-}
+const modal: Modal = new Modal(buttonOpenModalEmpresa, modalEmpresa, buttonCloseEmpresa)
 
-
-addEmpresa?.addEventListener('click', (e) => {
-    e.preventDefault();
-
-    openEmpresaModal();
-
-})
-
-
-
-function openEmpresaModal(): void {
-    modalEmpresa ? modalEmpresa.style.display = "flex" : console.log("erro")
-}
-
-function closeEmpresaModal(): void {
-    modalEmpresa ? modalEmpresa.style.display = "none" : console.log("erro")
-
-}
 
 submitEmpresa?.addEventListener('click', (e) => {
     e.preventDefault()
@@ -75,14 +52,3 @@ function collectNovaEmpresaData(): Empresa {
     return new Empresa(nome.value, email.value, cep.value, cidade.value, estado.value)
 
 }
-
-
-modalEmpresa?.addEventListener('click', (e) => {
-    e.preventDefault()
-
-    if (e.target == modalEmpresa || e.target == buttonCloseEmpresaModal) {
-        closeEmpresaModal()
-    }
-}
-)
-
