@@ -1,37 +1,23 @@
 import { Modal } from "./ModalClass.js";
+import { Vaga } from "./VagaClass.js";
 const candidatosUl = document.getElementById("candidatos");
-const submitButtonVaga = document.getElementById("submit");
+const submitButtonVaga = document.getElementById("submitVaga");
+// vaga
+const nomeVaga = document.getElementById('nomeVaga');
+const descricao = document.getElementById('descricao');
+const empresa = document.getElementById('escolhaEmpresa');
+// modal
 const buttonOpenModalVaga = document.getElementById("cadastrarVaga");
 const buttonCloseVaga = document.getElementById("btnCloseVaga");
 const modalVaga = document.getElementById("modalVaga");
-const modal = new Modal(buttonOpenModalVaga, modalVaga, buttonCloseVaga);
-function collectVagaData() {
-    const nomeVaga = document.getElementById('nomeVaga');
-    const descricao = document.getElementById('descricao');
-    const empresa = document.getElementById('escolhaEmpresa');
-    const vagaData = {
-        nome: nomeVaga.value,
-        descricao: descricao.value,
-        empresa: empresa.value
-    };
-    return vagaData;
-}
+new Modal(buttonOpenModalVaga, modalVaga, buttonCloseVaga);
+const vaga = new Vaga(nomeVaga, descricao, empresa);
 submitButtonVaga === null || submitButtonVaga === void 0 ? void 0 : submitButtonVaga.addEventListener('click', (e) => {
     e.preventDefault();
     const uniqueKey = `vagaData_${new Date().getTime()}`;
-    const data = collectVagaData();
-    try {
-        const escolhaEmpresa = document.getElementById("escolhaEmpresa");
-        localStorage.setItem(uniqueKey, JSON.stringify(data));
-        const option = document.createElement("option");
-        option.value = data.nome.charAt(0).toUpperCase();
-        option.text = option.value;
-        escolhaEmpresa === null || escolhaEmpresa === void 0 ? void 0 : escolhaEmpresa.appendChild(option);
-        alert("dados salvos com sucesso");
-    }
-    catch (e) {
-        console.log(e);
-    }
+    const data = vaga.collectVagaData();
+    localStorage.setItem(uniqueKey, JSON.stringify(data));
+    alert("dados salvos com sucesso");
 });
 function fetchDataOnLocalStorage() {
     let candidatos = [];

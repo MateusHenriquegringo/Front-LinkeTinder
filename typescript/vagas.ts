@@ -1,61 +1,38 @@
 import { Modal } from "./ModalClass.js"
+import { Vaga, VagaJSON } from "./VagaClass.js"
+
 
 const candidatosUl = document.getElementById("candidatos")
-const submitButtonVaga = document.getElementById("submit")
+const submitButtonVaga = document.getElementById("submitVaga")
 
+// vaga
+const nomeVaga = document.getElementById('nomeVaga') as HTMLInputElement
+const descricao = document.getElementById('descricao') as HTMLInputElement
+const empresa = document.getElementById('escolhaEmpresa') as HTMLInputElement
 
+// modal
 const buttonOpenModalVaga = document.getElementById("cadastrarVaga")
 const buttonCloseVaga = document.getElementById("btnCloseVaga")
 const modalVaga = document.getElementById("modalVaga")
 
-const modal: Modal = new Modal(buttonOpenModalVaga, modalVaga, buttonCloseVaga)
+new Modal(buttonOpenModalVaga, modalVaga, buttonCloseVaga)
 
-interface VagaDeEmprego {
-    nome: string,
-    descricao: string,
-    empresa: string
-}
-
-function collectVagaData(): VagaDeEmprego {
-    const nomeVaga = document.getElementById('nomeVaga') as HTMLInputElement
-    const descricao = document.getElementById('descricao') as HTMLInputElement
-    const empresa = document.getElementById('escolhaEmpresa') as HTMLInputElement
-
-
-    const vagaData: VagaDeEmprego = {
-        nome: nomeVaga.value,
-        descricao: descricao.value,
-        empresa: empresa.value
-    };
-
-    return vagaData
-}
+const vaga: Vaga = new Vaga(nomeVaga, descricao, empresa)
 
 submitButtonVaga?.addEventListener('click', (e) => {
-
     e.preventDefault()
 
     const uniqueKey: string = `vagaData_${new Date().getTime()}`;
 
-    const data: VagaDeEmprego = collectVagaData()
+    const data: VagaJSON = vaga.collectVagaData()
 
-    try {
+    localStorage.setItem(uniqueKey, JSON.stringify(data))
 
-        const escolhaEmpresa = document.getElementById("escolhaEmpresa")
+    alert("dados salvos com sucesso")
 
-        localStorage.setItem(uniqueKey, JSON.stringify(data))
-
-        const option = document.createElement("option")
-        option.value = data.nome.charAt(0).toUpperCase()
-        option.text = option.value
-
-        escolhaEmpresa?.appendChild(option)
-
-        alert("dados salvos com sucesso")
-
-    } catch (e) { console.log(e) }
- }
+}
 )
+
 
 function fetchDataOnLocalStorage(): CandidatoEmEmpresas[] {
 

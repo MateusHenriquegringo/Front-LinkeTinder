@@ -1,4 +1,5 @@
 import { ModalCandidato } from "./ModalClass.js"
+import { Candidato, CandidatoJSON } from "./CandidatoClass.js"
 
 const submitButtonCandidato: HTMLElement | null = document.getElementById("submit")
 const competenciasButtons: HTMLCollectionOf<Element> = document.getElementsByClassName("competencia-btn")
@@ -6,48 +7,24 @@ const modalCandidato: HTMLElement | null = document.getElementById("modalCandida
 const closeCandidatoButton: HTMLElement | null = document.getElementById("btnCloseCandidato")
 const btnOpenModalCandidato: HTMLElement | null = document.getElementById("cadastrarCandidato")
 
+
+const nome = document.getElementById('nome') as HTMLInputElement
+const email = document.getElementById('email') as HTMLInputElement
+const cep = document.getElementById('cep') as HTMLInputElement
+const cidade = document.getElementById('cidade') as HTMLInputElement
+const estadoFederativo = document.getElementById('estadoFederativo') as HTMLInputElement
+const formacao = document.getElementById('formacao') as HTMLInputElement
+
 const modal: ModalCandidato = new ModalCandidato(
-     btnOpenModalCandidato,
-     modalCandidato, 
-     closeCandidatoButton,
-     competenciasButtons
-    )
-
-interface Candidato {
-    nome: string,
-    email: string,
-    cep: string,
-    cidade: string,
-    estado: string,
-    formacao: string,
-    competencias: Array<string>
-}
+    btnOpenModalCandidato,
+    modalCandidato,
+    closeCandidatoButton,
+    competenciasButtons
+)
 
 
-function collectCandidatoData(): Candidato {
-    const nome = document.getElementById('nome') as HTMLInputElement
-    const email = document.getElementById('email') as HTMLInputElement
-    const cep = document.getElementById('cep') as HTMLInputElement
-    const cidade = document.getElementById('cidade') as HTMLInputElement
-    const estadoFederativo = document.getElementById('estadoFederativo') as HTMLInputElement
-    const formacao = document.getElementById('formacao') as HTMLInputElement
+const candidato: Candidato = new Candidato(nome, email, cep, cidade, estadoFederativo, formacao, competenciasButtons)
 
-
-    const candidatoData: Candidato = {
-
-        nome: nome.value,
-        email: email.value,
-        cep: cep.value,
-        cidade: cidade.value,
-        estado: estadoFederativo.value,
-        formacao: formacao.value,
-        competencias: modal.collectCompetencias()
-
-    };
-
-    return candidatoData
-
-}
 
 submitButtonCandidato?.addEventListener('click', (e) => {
 
@@ -55,7 +32,7 @@ submitButtonCandidato?.addEventListener('click', (e) => {
 
     const uniqueKey: string = `candidatoData_${new Date().getTime()}`;
 
-    const data: Candidato = collectCandidatoData()
+    const data : CandidatoJSON = candidato.collectCandidatoData()
 
     localStorage.setItem(uniqueKey, JSON.stringify(data))
 
