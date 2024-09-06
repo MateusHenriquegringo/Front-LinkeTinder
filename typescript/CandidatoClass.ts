@@ -7,7 +7,7 @@ export class Candidato {
         public cidade: HTMLInputElement,
         public estado: HTMLInputElement,
         public formacao: HTMLInputElement,
-        public competenciasButtons: HTMLCollectionOf<Element>
+        public competencias: HTMLCollectionOf<Element>
     ){}
 
     collectCandidatoData(): CandidatoJSON {
@@ -23,7 +23,7 @@ export class Candidato {
     }
 
     private collectCompetencias(): string[] {
-        return Array.from(this.competenciasButtons)
+        return Array.from(this.competencias)
             .filter(competenciasButton => competenciasButton.classList.contains('selected'))
             .map(competencia => competencia.textContent?.trim() ?? "");
     }

@@ -1,6 +1,7 @@
+import { Candidato, CandidatoJSON } from "./CandidatoClass.js"
+import { fetchPefix, LocalStorage } from "./LocalStorage.js"
 import { Modal } from "./ModalClass.js"
 import { Vaga, VagaJSON } from "./VagaClass.js"
-
 
 const candidatosUl = document.getElementById("candidatos")
 const submitButtonVaga = document.getElementById("submitVaga")
@@ -16,6 +17,7 @@ const buttonCloseVaga = document.getElementById("btnCloseVaga")
 const modalVaga = document.getElementById("modalVaga")
 
 new Modal(buttonOpenModalVaga, modalVaga, buttonCloseVaga)
+
 
 const vaga: Vaga = new Vaga(nomeVaga, descricao, empresa)
 
@@ -34,38 +36,14 @@ submitButtonVaga?.addEventListener('click', (e) => {
 )
 
 
-function fetchDataOnLocalStorage(): CandidatoEmEmpresas[] {
+function buildHtmlList() {    
 
-    let candidatos: CandidatoEmEmpresas[] = []
+    const candidatos: CandidatoJSON[] = LocalStorage.fetchOnLocalStorage<CandidatoJSON>(fetchPefix.CANDIDATOS)
 
-    for (let i: number = 0; i < localStorage.length; i++) {
-
-        const key: string | null = localStorage.key(i)
-
-        if (key && key.startsWith('candidatoData_')) {
-            const jsonString: string | null = localStorage.getItem(key)
-
-            if (jsonString) candidatos.push(JSON.parse(jsonString))
-        }
-
-    }
-
-    return candidatos
-
-}
-
-interface CandidatoEmEmpresas {
-    formacao: string,
-    competencias: string[]
-}
-
-function buildHtmlList() {
-
-    const newCandidato = document.createElement('li');
-
-    fetchDataOnLocalStorage().forEach(
-        candidato => {
-            newCandidato.innerHTML = `
+    candidatos.forEach(
+            candidato => {
+                const newCandidato = document.createElement('li');
+                newCandidato.innerHTML = `
                 <div class="candidato">
                     <div class="formacao">
                         <p>Formacao:</p>
@@ -80,8 +58,9 @@ function buildHtmlList() {
                 </div>
             `;
 
-            candidatosUl?.appendChild(newCandidato)
-        }
-    )
+                candidatosUl?.appendChild(newCandidato)
+            }
+        )
 }
 
+buildHtmlList()

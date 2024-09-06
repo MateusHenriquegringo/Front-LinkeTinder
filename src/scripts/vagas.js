@@ -1,3 +1,4 @@
+import { fetchPefix, LocalStorage } from "./LocalStorage.js";
 import { Modal } from "./ModalClass.js";
 import { Vaga } from "./VagaClass.js";
 const candidatosUl = document.getElementById("candidatos");
@@ -19,21 +20,10 @@ submitButtonVaga === null || submitButtonVaga === void 0 ? void 0 : submitButton
     localStorage.setItem(uniqueKey, JSON.stringify(data));
     alert("dados salvos com sucesso");
 });
-function fetchDataOnLocalStorage() {
-    let candidatos = [];
-    for (let i = 0; i < localStorage.length; i++) {
-        const key = localStorage.key(i);
-        if (key && key.startsWith('candidatoData_')) {
-            const jsonString = localStorage.getItem(key);
-            if (jsonString)
-                candidatos.push(JSON.parse(jsonString));
-        }
-    }
-    return candidatos;
-}
 function buildHtmlList() {
-    const newCandidato = document.createElement('li');
-    fetchDataOnLocalStorage().forEach(candidato => {
+    const candidatos = LocalStorage.fetchOnLocalStorage(fetchPefix.CANDIDATOS);
+    candidatos.forEach(candidato => {
+        const newCandidato = document.createElement('li');
         newCandidato.innerHTML = `
                 <div class="candidato">
                     <div class="formacao">
@@ -51,3 +41,4 @@ function buildHtmlList() {
         candidatosUl === null || candidatosUl === void 0 ? void 0 : candidatosUl.appendChild(newCandidato);
     });
 }
+buildHtmlList();

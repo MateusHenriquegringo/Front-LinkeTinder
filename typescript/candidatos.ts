@@ -1,12 +1,14 @@
 import { ModalCandidato } from "./ModalClass.js"
 import { Candidato, CandidatoJSON } from "./CandidatoClass.js"
+import { VagaJSON } from "./VagaClass.js"
+import { fetchPefix, LocalStorage } from "./LocalStorage.js"
 
 const submitButtonCandidato: HTMLElement | null = document.getElementById("submit")
 const competenciasButtons: HTMLCollectionOf<Element> = document.getElementsByClassName("competencia-btn")
 const modalCandidato: HTMLElement | null = document.getElementById("modalCandidato")
 const closeCandidatoButton: HTMLElement | null = document.getElementById("btnCloseCandidato")
 const btnOpenModalCandidato: HTMLElement | null = document.getElementById("cadastrarCandidato")
-
+const vagas: HTMLElement | null = document.getElementById("vagas")
 
 const nome = document.getElementById('nome') as HTMLInputElement
 const email = document.getElementById('email') as HTMLInputElement
@@ -41,3 +43,33 @@ submitButtonCandidato?.addEventListener('click', (e) => {
     modal.clearCompetenciasStyle()
 
 })
+
+function buildHtmlListOfVagas () {
+
+    const vagasJson: VagaJSON[] = LocalStorage.fetchOnLocalStorage<VagaJSON>(fetchPefix.VAGAS)
+
+    vagasJson.forEach(
+        vaga => {
+            const newVaga = document.createElement('li');
+            newVaga.innerHTML = `
+
+            <div class="vagas">
+                    <div class="nome">
+                        <p>Vaga:</p>
+                        <span>${vaga.nome}</span>
+                    </div>
+                    <div class="descricao">
+                        <p>Descricao:</p>
+                        <span>${vaga.descricao}</span>                        
+                    </div>
+            </div>
+          
+        `;
+
+        vagas?.appendChild(newVaga)
+        }
+    
+    )
+
+}
+buildHtmlListOfVagas()
