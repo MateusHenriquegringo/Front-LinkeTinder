@@ -1,20 +1,22 @@
 export class Modal {
+    buttonToOpen;
+    modal;
+    buttonToClose;
     constructor(buttonToOpen, modal, buttonToClose) {
-        var _a, _b, _c;
         this.buttonToOpen = buttonToOpen;
         this.modal = modal;
         this.buttonToClose = buttonToClose;
-        (_a = this.modal) === null || _a === void 0 ? void 0 : _a.addEventListener('click', (e) => {
+        this.modal?.addEventListener('click', (e) => {
             e.preventDefault();
             if (e.target == modal || e.target == buttonToClose) {
                 this.closeModal();
             }
         });
-        (_b = this.buttonToOpen) === null || _b === void 0 ? void 0 : _b.addEventListener('click', (e) => {
+        this.buttonToOpen?.addEventListener('click', (e) => {
             e.preventDefault();
             this.openModal();
         });
-        (_c = this.buttonToClose) === null || _c === void 0 ? void 0 : _c.addEventListener('click', (e) => {
+        this.buttonToClose?.addEventListener('click', (e) => {
             e.preventDefault();
             this.closeModal();
         });
@@ -27,6 +29,10 @@ export class Modal {
     }
 }
 export class ModalCandidato extends Modal {
+    buttonToOpen;
+    modal;
+    buttonToClose;
+    competenciasButtons;
     constructor(buttonToOpen, modal, buttonToClose, competenciasButtons) {
         super(buttonToOpen, modal, buttonToClose);
         this.buttonToOpen = buttonToOpen;
@@ -47,6 +53,6 @@ export class ModalCandidato extends Modal {
     collectCompetencias() {
         return Array.from(this.competenciasButtons)
             .filter(competenciasButton => competenciasButton.classList.contains('selected'))
-            .map(competencia => { var _a, _b; return (_b = (_a = competencia.textContent) === null || _a === void 0 ? void 0 : _a.trim()) !== null && _b !== void 0 ? _b : ""; });
+            .map(competencia => competencia.textContent?.trim() ?? "");
     }
 }

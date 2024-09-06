@@ -1,4 +1,7 @@
 export class Vaga {
+    nome;
+    descricao;
+    empresa;
     constructor(nome, descricao, empresa) {
         this.nome = nome;
         this.descricao = descricao;

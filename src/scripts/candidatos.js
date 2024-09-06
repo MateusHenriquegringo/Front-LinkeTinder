@@ -15,7 +15,7 @@ const estadoFederativo = document.getElementById('estadoFederativo');
 const formacao = document.getElementById('formacao');
 const modal = new ModalCandidato(btnOpenModalCandidato, modalCandidato, closeCandidatoButton, competenciasButtons);
 const candidato = new Candidato(nome, email, cep, cidade, estadoFederativo, formacao, competenciasButtons);
-submitButtonCandidato === null || submitButtonCandidato === void 0 ? void 0 : submitButtonCandidato.addEventListener('click', (e) => {
+submitButtonCandidato?.addEventListener('click', (e) => {
     e.preventDefault();
     const uniqueKey = `candidatoData_${new Date().getTime()}`;
     const data = candidato.collectCandidatoData();
@@ -41,7 +41,7 @@ function buildHtmlListOfVagas() {
             </div>
           
         `;
-        vagas === null || vagas === void 0 ? void 0 : vagas.appendChild(newVaga);
+        vagas?.appendChild(newVaga);
     });
 }
 buildHtmlListOfVagas();

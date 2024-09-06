@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "ES6",                      /* Define a versão do JavaScript para os arquivos emitidos */
+    "target": "ES2022",                      /* Define a versão do JavaScript para os arquivos emitidos */
     "module": "ESNext",
     "moduleResolution": "Bundler",
     "strict": true,

@@ -22,19 +22,18 @@
     <ul id="candidatos">
     </ul>
 
-    <h2>Anunciar</h2>
-    <div>
-
-      <button id="cadastrarVaga">Anunciar uma vaga</button>
-      <button id="cadastrarEmpresa">Cadastrar Empresa</button>
-
-    </div>
 
     <div id="grafico">
       <h2>Grafico de candidatos por Tecnologia</h2>
       <canvas id="myChart">grafic</canvas>
     </div>
 
+    <h2>Anunciar</h2>
+
+    <div>
+      <button id="cadastrarVaga">Anunciar uma vaga</button>
+      <button id="cadastrarEmpresa">Cadastrar Empresa</button>
+    </div>
   </main>
 
   <div id="modalEmpresa" class="modal">
@@ -90,49 +89,10 @@
       </form>
     </div>
   </div>
+  <script type="module" src="../scripts/graphic.js"></script>
   <script type="module" src="../scripts/vagas.js"></script>
   <script type="module" src="../scripts/empresa.js"></script>
   <script src="../scripts/CEP.js"></script>
-
-  <script type="module">
-
-    import { LocalStorage } from '../scripts/LocalStorage.js';
-
-    document.addEventListener('DOMContentLoaded', function () {
-      const ctx = document.getElementById('myChart')
-      const competenciasData = LocalStorage.candidatosByCompetencia()
-      const myChart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-          labels: Object.keys(competenciasData),
-          datasets: [{
-            label: 'Numero de candidatos que dominam',
-            data: Object.values(competenciasData),
-            backgroundColor: [
-              'rgba(255, 99, 132, 0.7)',
-              'rgba(54, 162, 235, 0.7)'
-            ],
-
-            borderColor: [
-              'rgba(255, 99, 132, 1)',
-              'rgba(54, 162, 235, 1)'
-            ],
-            borderWidth: 1
-          }]
-        },
-        options: {
-          scales: {
-            y: {
-              beginAtZero: true,
-              tricks: {
-                stepSize: 1
-              }
-            }
-          }
-        }
-      });
-    });
-  </script>
 </body>
 
 </html>

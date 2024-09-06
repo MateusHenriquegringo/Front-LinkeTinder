@@ -1,4 +1,9 @@
 export class Empresa {
+    nome;
+    email;
+    cep;
+    cidade;
+    estadoFederativo;
     constructor(nome, email, cep, cidade, estadoFederativo) {
         this.nome = nome;
         this.email = email;

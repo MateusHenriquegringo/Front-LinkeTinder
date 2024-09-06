@@ -15,14 +15,14 @@ const estado = document.getElementById('estadoFederativo');
 const selectOption = document.getElementById("escolhaEmpresa");
 new Modal(buttonOpenModalEmpresa, modalEmpresa, buttonCloseEmpresa);
 const empresa = new Empresa(nome, email, cep, cidade, estado);
-submitEmpresa === null || submitEmpresa === void 0 ? void 0 : submitEmpresa.addEventListener('click', (e) => {
+submitEmpresa?.addEventListener('click', (e) => {
     e.preventDefault();
     const uniqueKey = `empresaData_${new Date().getTime()}`;
     const data = empresa.collectEmpresaData();
     const option = document.createElement('option');
     option.value = data.nome;
     option.text = data.nome;
-    selectOption === null || selectOption === void 0 ? void 0 : selectOption.appendChild(option);
+    selectOption?.appendChild(option);
     localStorage.setItem(uniqueKey, JSON.stringify(data));
     alert("dados salvos com sucesso");
 });

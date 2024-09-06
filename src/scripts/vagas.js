@@ -13,7 +13,7 @@ const buttonCloseVaga = document.getElementById("btnCloseVaga");
 const modalVaga = document.getElementById("modalVaga");
 new Modal(buttonOpenModalVaga, modalVaga, buttonCloseVaga);
 const vaga = new Vaga(nomeVaga, descricao, empresa);
-submitButtonVaga === null || submitButtonVaga === void 0 ? void 0 : submitButtonVaga.addEventListener('click', (e) => {
+submitButtonVaga?.addEventListener('click', (e) => {
     e.preventDefault();
     const uniqueKey = `vagaData_${new Date().getTime()}`;
     const data = vaga.collectVagaData();
@@ -38,7 +38,7 @@ function buildHtmlList() {
                     </div>
                 </div>
             `;
-        candidatosUl === null || candidatosUl === void 0 ? void 0 : candidatosUl.appendChild(newCandidato);
+        candidatosUl?.appendChild(newCandidato);
     });
 }
 buildHtmlList();

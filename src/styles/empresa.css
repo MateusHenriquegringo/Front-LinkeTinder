@@ -41,7 +41,9 @@ h2 {
 }
 
 main > h2:last-of-type {
+  margin-top: 20px;
   margin-bottom: 20px;
+
 }
 
 ul {
