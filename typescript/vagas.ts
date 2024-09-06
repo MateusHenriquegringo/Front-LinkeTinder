@@ -1,4 +1,4 @@
-import { Candidato, CandidatoJSON } from "./CandidatoClass.js"
+import { CandidatoJSON } from "./CandidatoClass.js"
 import { fetchPefix, LocalStorage } from "./LocalStorage.js"
 import { Modal } from "./ModalClass.js"
 import { Vaga, VagaJSON } from "./VagaClass.js"

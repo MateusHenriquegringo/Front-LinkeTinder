@@ -1,5 +1,6 @@
 import { Empresa } from "./EmpresaClass.js";
 import { Modal } from "./ModalClass.js";
+const myChartElement = document.getElementById("myChart");
 // modal
 const buttonOpenModalEmpresa = document.getElementById('cadastrarEmpresa');
 const submitEmpresa = document.getElementById("submitEmpresa");

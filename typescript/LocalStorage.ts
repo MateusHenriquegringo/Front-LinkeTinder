@@ -1,6 +1,4 @@
-import { Candidato } from "./CandidatoClass"
-import { Empresa, EmpresaJSON } from "./EmpresaClass";
-import { VagaJSON } from "./VagaClass";
+import { CandidatoJSON } from "./CandidatoClass"
 
 export class LocalStorage {
 
@@ -25,6 +23,19 @@ export class LocalStorage {
 
         return data
 
+    }
+
+    static candidatosByCompetencia() : {[key: string]: number} {
+        
+        const count: {[key: string]: number} = {}
+
+        this.fetchOnLocalStorage<CandidatoJSON>(fetchPefix.CANDIDATOS).forEach(candidato => {
+            candidato.competencias.forEach(competencia => {
+                count[competencia] = (count[competencia]||0) + 1;
+            })
+        })
+
+        return count
     }
 
 }

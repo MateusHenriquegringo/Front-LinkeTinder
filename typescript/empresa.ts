@@ -1,5 +1,8 @@
 import { Empresa, EmpresaJSON } from "./EmpresaClass.js"
+import { LocalStorage } from "./LocalStorage.js"
 import { Modal } from "./ModalClass.js"
+
+const myChartElement = document.getElementById("myChart") as HTMLCanvasElement
 
 // modal
 const buttonOpenModalEmpresa = document.getElementById('cadastrarEmpresa')
@@ -36,4 +39,3 @@ submitEmpresa?.addEventListener('click', (e) => {
     localStorage.setItem(uniqueKey, JSON.stringify(data))
     alert("dados salvos com sucesso")
 })
-

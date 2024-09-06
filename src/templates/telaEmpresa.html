@@ -1,93 +1,138 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Empresas</title>
-    <link rel="stylesheet" href="../styles/reset.css" />
-    <link rel="stylesheet" href="../global.css" />
-    <link rel="stylesheet" href="../styles/empresa.css" />
-  </head>
-  <body>
-    <main>
-      <div class="head">
-        <a href="../templates/index.html">Voltar</a>
-        <h2>Candidatos</h2>
-      </div>
 
-      <ul id="candidatos">
-      </ul>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Empresas</title>
+  <link rel="stylesheet" href="../styles/reset.css" />
+  <link rel="stylesheet" href="../global.css" />
+  <link rel="stylesheet" href="../styles/empresa.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+</head>
 
-      <h2>Anunciar</h2>
-      <div>
+<body>
 
-        <button id="cadastrarVaga">Anunciar uma vaga</button>
-        <button id="cadastrarEmpresa">Cadastrar Empresa</button>
+  <main>
+    <div class="head">
+      <a href="../templates/index.html">Voltar</a>
+      <h2>Candidatos</h2>
+    </div>
 
-      </div>
-    </main>
+    <ul id="candidatos">
+    </ul>
 
-    <div id="modalEmpresa" class="modal">
-      <div class="modal-content">
-        <span id="btnCloseEmpresa" class="close">&times;</span>
-        <h2>Nova Empresa</h2>
-        <form id="vagaForm">
-          <div class="form-group">
-            <label for="empresaNome">Empresa:</label>
-            <input type="text" id="empresaNome" name="empresaNome" required />
-          </div>
-          <div class="form-group">
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required />
-          </div>
-          <div class="form-group">
-            <label for="cep">CEP:</label>
-            <input type="text" id="cep" name="cep" required />
-          </div>
-          <div class="form-group">
-            <label for="cidade">Cidade:</label>
-            <input type="text" id="cidade" name="cidade" required />
-          </div>
-          <div class="form-group">
-            <label for="estadoFederativo">Estado Federativo:</label>
-            <input
-              type="text"
-              id="estadoFederativo"
-              name="estadoFederativo"
-              required
-            />
-            <button id="submitEmpresa" type="submit">Salvar</button>
+    <h2>Anunciar</h2>
+    <div>
 
-          </div>
+      <button id="cadastrarVaga">Anunciar uma vaga</button>
+      <button id="cadastrarEmpresa">Cadastrar Empresa</button>
+
+    </div>
+
+    <div id="grafico">
+      <h2>Grafico de candidatos por Tecnologia</h2>
+      <canvas id="myChart">grafic</canvas>
+    </div>
+
+  </main>
+
+  <div id="modalEmpresa" class="modal">
+    <div class="modal-content">
+      <span id="btnCloseEmpresa" class="close">&times;</span>
+      <h2>Nova Empresa</h2>
+      <form id="vagaForm">
+        <div class="form-group">
+          <label for="empresaNome">Empresa:</label>
+          <input type="text" id="empresaNome" name="empresaNome" required />
+        </div>
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" required />
+        </div>
+        <div class="form-group">
+          <label for="cep">CEP:</label>
+          <input type="text" id="cep" name="cep" required />
+        </div>
+        <div class="form-group">
+          <label for="cidade">Cidade:</label>
+          <input type="text" id="cidade" name="cidade" required />
+        </div>
+        <div class="form-group">
+          <label for="estadoFederativo">Estado Federativo:</label>
+          <input type="text" id="estadoFederativo" name="estadoFederativo" required />
+          <button id="submitEmpresa" type="submit">Salvar</button>
+
         </div>
     </div>
+  </div>
 
-    <div id="modalVaga" class="modal">
-      <div class="modal-content">
-        <span id="btnCloseVaga" class="close">&times;</span>
-        <h2>Nova Vaga</h2>
-        <form id="vagaForm">
-          <div class="form-group">
-            <label for="nomeVaga">Nome da Vaga:</label>
-            <input type="text" id="nomeVaga" name="nomeVaga" required />
-          </div>
-          <div class="form-group">
-            <label for="descricao">Descrição:</label>
-            <input type="text" id="descricao" name="descricao" required />
-          </div>
-          <div class="form-group">
-            <label for="escolhaEmpresa">Empresa:</label>
-            <select id="escolhaEmpresa" name="escolhaEmpresa">
-            </select>
-          </div>
+  <div id="modalVaga" class="modal">
+    <div class="modal-content">
+      <span id="btnCloseVaga" class="close">&times;</span>
+      <h2>Nova Vaga</h2>
+      <form id="vagaForm">
+        <div class="form-group">
+          <label for="nomeVaga">Nome da Vaga:</label>
+          <input type="text" id="nomeVaga" name="nomeVaga" required />
+        </div>
+        <div class="form-group">
+          <label for="descricao">Descrição:</label>
+          <input type="text" id="descricao" name="descricao" required />
+        </div>
+        <div class="form-group">
+          <label for="escolhaEmpresa">Empresa:</label>
+          <select id="escolhaEmpresa" name="escolhaEmpresa">
+          </select>
+        </div>
 
-          <button id="submitVaga" type="submit">Salvar</button>
-        </form>
-      </div>
+        <button id="submitVaga" type="submit">Salvar</button>
+      </form>
     </div>
+  </div>
+  <script type="module" src="../scripts/vagas.js"></script>
+  <script type="module" src="../scripts/empresa.js"></script>
+  <script src="../scripts/CEP.js"></script>
 
-    <script type="module" src="../scripts/vagas.js"></script>
-    <script type="module" src="../scripts/empresa.js"></script>
-    <script src="../scripts/CEP.js"></script>
-  </body>
+  <script type="module">
+
+    import { LocalStorage } from '../scripts/LocalStorage.js';
+
+    document.addEventListener('DOMContentLoaded', function () {
+      const ctx = document.getElementById('myChart')
+      const competenciasData = LocalStorage.candidatosByCompetencia()
+      const myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: Object.keys(competenciasData),
+          datasets: [{
+            label: 'Numero de candidatos que dominam',
+            data: Object.values(competenciasData),
+            backgroundColor: [
+              'rgba(255, 99, 132, 0.7)',
+              'rgba(54, 162, 235, 0.7)'
+            ],
+
+            borderColor: [
+              'rgba(255, 99, 132, 1)',
+              'rgba(54, 162, 235, 1)'
+            ],
+            borderWidth: 1
+          }]
+        },
+        options: {
+          scales: {
+            y: {
+              beginAtZero: true,
+              tricks: {
+                stepSize: 1
+              }
+            }
+          }
+        }
+      });
+    });
+  </script>
+</body>
+
 </html>

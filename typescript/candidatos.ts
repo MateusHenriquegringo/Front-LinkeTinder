@@ -3,12 +3,14 @@ import { Candidato, CandidatoJSON } from "./CandidatoClass.js"
 import { VagaJSON } from "./VagaClass.js"
 import { fetchPefix, LocalStorage } from "./LocalStorage.js"
 
+
 const submitButtonCandidato: HTMLElement | null = document.getElementById("submit")
 const competenciasButtons: HTMLCollectionOf<Element> = document.getElementsByClassName("competencia-btn")
 const modalCandidato: HTMLElement | null = document.getElementById("modalCandidato")
 const closeCandidatoButton: HTMLElement | null = document.getElementById("btnCloseCandidato")
 const btnOpenModalCandidato: HTMLElement | null = document.getElementById("cadastrarCandidato")
 const vagas: HTMLElement | null = document.getElementById("vagas")
+
 
 const nome = document.getElementById('nome') as HTMLInputElement
 const email = document.getElementById('email') as HTMLInputElement
@@ -34,7 +36,7 @@ submitButtonCandidato?.addEventListener('click', (e) => {
 
     const uniqueKey: string = `candidatoData_${new Date().getTime()}`;
 
-    const data : CandidatoJSON = candidato.collectCandidatoData()
+    const data: CandidatoJSON = candidato.collectCandidatoData()
 
     localStorage.setItem(uniqueKey, JSON.stringify(data))
 
@@ -44,7 +46,7 @@ submitButtonCandidato?.addEventListener('click', (e) => {
 
 })
 
-function buildHtmlListOfVagas () {
+function buildHtmlListOfVagas() {
 
     const vagasJson: VagaJSON[] = LocalStorage.fetchOnLocalStorage<VagaJSON>(fetchPefix.VAGAS)
 
@@ -66,10 +68,11 @@ function buildHtmlListOfVagas () {
           
         `;
 
-        vagas?.appendChild(newVaga)
+            vagas?.appendChild(newVaga)
         }
-    
+
     )
 
 }
 buildHtmlListOfVagas()
+

@@ -2,7 +2,7 @@
   "compilerOptions": {
     "target": "ES6",                      /* Define a versão do JavaScript para os arquivos emitidos */
     "module": "ESNext",
-    "moduleResolution": "node",
+    "moduleResolution": "Bundler",
     "strict": true,
     "rootDir": "./typescript",               /* Diretório raiz para os arquivos TypeScript */
     "outDir": "src/scripts",                   /* Diretório para onde os arquivos JavaScript compilados serão enviados */

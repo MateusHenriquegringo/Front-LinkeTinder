@@ -13,6 +13,15 @@ export class LocalStorage {
         }
         return data;
     }
+    static candidatosByCompetencia() {
+        const count = {};
+        this.fetchOnLocalStorage(fetchPefix.CANDIDATOS).forEach(candidato => {
+            candidato.competencias.forEach(competencia => {
+                count[competencia] = (count[competencia] || 0) + 1;
+            });
+        });
+        return count;
+    }
 }
 export var fetchPefix;
 (function (fetchPefix) {
