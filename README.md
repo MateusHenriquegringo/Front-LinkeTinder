@@ -23,3 +23,4 @@ Este repositório contém o frontend da aplicação Linketinder, um sistema de c
 - Biblioteca Chart.Js
 - API ViaCEP
 - npm
+- Regex
