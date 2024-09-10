@@ -14,6 +14,9 @@ const vagas: HTMLElement | null = document.getElementById("vagas")
 
 const nome = document.getElementById('nome') as HTMLInputElement
 const email = document.getElementById('email') as HTMLInputElement
+const cpf = document.getElementById('cpf') as HTMLInputElement
+const telefone = document.getElementById('telefone') as HTMLInputElement
+const linkedin = document.getElementById('linkedin') as HTMLInputElement
 const cep = document.getElementById('cep') as HTMLInputElement
 const cidade = document.getElementById('cidade') as HTMLInputElement
 const estadoFederativo = document.getElementById('estadoFederativo') as HTMLInputElement
@@ -27,20 +30,24 @@ const modal: ModalCandidato = new ModalCandidato(
 )
 
 
-const candidato: Candidato = new Candidato(nome, email, cep, cidade, estadoFederativo, formacao, competenciasButtons)
+const candidato: Candidato = new Candidato(nome, email, cpf, telefone,linkedin, cep, cidade, estadoFederativo, formacao, competenciasButtons)
 
 
 submitButtonCandidato?.addEventListener('click', (e) => {
 
     e.preventDefault()
 
-    const uniqueKey: string = `candidatoData_${new Date().getTime()}`;
+    try {
+        const uniqueKey: string = `candidatoData_${new Date().getTime()}`;
+        const data: CandidatoJSON = candidato.collectCandidatoData()
+    
+        localStorage.setItem(uniqueKey, JSON.stringify(data))
+        alert("dados salvos com sucesso")
 
-    const data: CandidatoJSON = candidato.collectCandidatoData()
+    } catch (erro) {
+        if (erro instanceof Error) alert(erro.message)
+    }
 
-    localStorage.setItem(uniqueKey, JSON.stringify(data))
-
-    alert("dados salvos com sucesso")
 
     modal.clearCompetenciasStyle()
 

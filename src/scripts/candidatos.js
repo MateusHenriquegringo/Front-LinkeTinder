@@ -9,18 +9,27 @@ const btnOpenModalCandidato = document.getElementById("cadastrarCandidato");
 const vagas = document.getElementById("vagas");
 const nome = document.getElementById('nome');
 const email = document.getElementById('email');
+const cpf = document.getElementById('cpf');
+const telefone = document.getElementById('telefone');
+const linkedin = document.getElementById('linkedin');
 const cep = document.getElementById('cep');
 const cidade = document.getElementById('cidade');
 const estadoFederativo = document.getElementById('estadoFederativo');
 const formacao = document.getElementById('formacao');
 const modal = new ModalCandidato(btnOpenModalCandidato, modalCandidato, closeCandidatoButton, competenciasButtons);
-const candidato = new Candidato(nome, email, cep, cidade, estadoFederativo, formacao, competenciasButtons);
+const candidato = new Candidato(nome, email, cpf, telefone, linkedin, cep, cidade, estadoFederativo, formacao, competenciasButtons);
 submitButtonCandidato?.addEventListener('click', (e) => {
     e.preventDefault();
-    const uniqueKey = `candidatoData_${new Date().getTime()}`;
-    const data = candidato.collectCandidatoData();
-    localStorage.setItem(uniqueKey, JSON.stringify(data));
-    alert("dados salvos com sucesso");
+    try {
+        const uniqueKey = `candidatoData_${new Date().getTime()}`;
+        const data = candidato.collectCandidatoData();
+        localStorage.setItem(uniqueKey, JSON.stringify(data));
+        alert("dados salvos com sucesso");
+    }
+    catch (erro) {
+        if (erro instanceof Error)
+            alert(erro.message);
+    }
     modal.clearCompetenciasStyle();
 });
 function buildHtmlListOfVagas() {
