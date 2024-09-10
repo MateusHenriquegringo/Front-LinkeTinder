@@ -9,20 +9,29 @@ const buttonCloseEmpresa = document.getElementById("btnCloseEmpresa");
 // empresa
 const nome = document.getElementById('empresaNome');
 const email = document.getElementById('email');
+const cnpj = document.getElementById('cnpj');
 const cep = document.getElementById('cep');
 const cidade = document.getElementById('cidade');
 const estado = document.getElementById('estadoFederativo');
 const selectOption = document.getElementById("escolhaEmpresa");
 new Modal(buttonOpenModalEmpresa, modalEmpresa, buttonCloseEmpresa);
-const empresa = new Empresa(nome, email, cep, cidade, estado);
+const empresa = new Empresa(nome, email, cnpj, cep, cidade, estado);
 submitEmpresa?.addEventListener('click', (e) => {
     e.preventDefault();
     const uniqueKey = `empresaData_${new Date().getTime()}`;
-    const data = empresa.collectEmpresaData();
-    const option = document.createElement('option');
-    option.value = data.nome;
-    option.text = data.nome;
-    selectOption?.appendChild(option);
-    localStorage.setItem(uniqueKey, JSON.stringify(data));
-    alert("dados salvos com sucesso");
+    try {
+        const data = empresa.collectEmpresaData();
+        if (data.nome) {
+            const option = document.createElement('option');
+            option.value = data.nome;
+            option.text = data.nome;
+            selectOption?.appendChild(option);
+        }
+        localStorage.setItem(uniqueKey, JSON.stringify(data));
+        alert("dados salvos com sucesso");
+    }
+    catch (erro) {
+        if (erro instanceof Error)
+            alert(erro.message);
+    }
 });
