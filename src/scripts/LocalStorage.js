@@ -22,6 +22,15 @@ export class LocalStorage {
         });
         return count;
     }
+    static buildOptionHTMLFromLocalStorage(elementToAppend, prefix) {
+        const empresas = LocalStorage.fetchOnLocalStorage(prefix);
+        empresas.forEach((e) => {
+            const option = document.createElement("option");
+            option.value = e.nome;
+            option.text = e.nome;
+            elementToAppend?.appendChild(option);
+        });
+    }
 }
 export var fetchPefix;
 (function (fetchPefix) {

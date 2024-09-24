@@ -1,6 +1,6 @@
 import { Empresa } from "./EmpresaClass.js";
+import { fetchPefix, LocalStorage } from "./LocalStorage.js";
 import { Modal } from "./ModalClass.js";
-const myChartElement = document.getElementById("myChart");
 // modal
 const buttonOpenModalEmpresa = document.getElementById('cadastrarEmpresa');
 const submitEmpresa = document.getElementById("submitEmpresa");
@@ -21,13 +21,8 @@ submitEmpresa?.addEventListener('click', (e) => {
     const uniqueKey = `empresaData_${new Date().getTime()}`;
     try {
         const data = empresa.collectEmpresaData();
-        if (data.nome) {
-            const option = document.createElement('option');
-            option.value = data.nome;
-            option.text = data.nome;
-            selectOption?.appendChild(option);
-        }
         localStorage.setItem(uniqueKey, JSON.stringify(data));
+        LocalStorage.buildOptionHTMLFromLocalStorage(selectOption, fetchPefix.EMPRESAS);
         alert("dados salvos com sucesso");
     }
     catch (erro) {

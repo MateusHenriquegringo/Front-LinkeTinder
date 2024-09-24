@@ -1,8 +1,6 @@
 import { Empresa, EmpresaJSON } from "./EmpresaClass.js"
-import { LocalStorage } from "./LocalStorage.js"
+import { fetchPefix, LocalStorage } from "./LocalStorage.js"
 import { Modal } from "./ModalClass.js"
-
-const myChartElement = document.getElementById("myChart") as HTMLCanvasElement
 
 // modal
 const buttonOpenModalEmpresa = document.getElementById('cadastrarEmpresa')
@@ -18,7 +16,7 @@ const cep = document.getElementById('cep') as HTMLInputElement
 const cidade = document.getElementById('cidade') as HTMLInputElement
 const estado = document.getElementById('estadoFederativo') as HTMLInputElement
 
-const selectOption = document.getElementById("escolhaEmpresa")
+const selectOption = document.getElementById("escolhaEmpresa") as HTMLInputElement
 
 new Modal(buttonOpenModalEmpresa, modalEmpresa, buttonCloseEmpresa)
 
@@ -32,19 +30,15 @@ submitEmpresa?.addEventListener('click', (e) => {
     try {
         const data: EmpresaJSON = empresa.collectEmpresaData()
 
-        if (data.nome) {
-            const option = document.createElement('option')
-            option.value = data.nome
-            option.text = data.nome
-
-            selectOption?.appendChild(option)
-
-        }
-
         localStorage.setItem(uniqueKey, JSON.stringify(data))
+
+        LocalStorage.buildOptionHTMLFromLocalStorage(selectOption, fetchPefix.EMPRESAS)
+
         alert("dados salvos com sucesso")
     } catch (erro) {
         if (erro instanceof Error) alert(erro.message)
     }
 
 })
+
+

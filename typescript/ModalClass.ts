@@ -38,8 +38,6 @@ export class Modal {
     
 
 }
-
-
 export class ModalCandidato extends Modal {
 
     constructor( 

@@ -1,4 +1,5 @@
 import { CandidatoJSON } from "./CandidatoClass"
+import { EmpresaJSON } from "./EmpresaClass"
 
 export class LocalStorage {
 
@@ -38,6 +39,18 @@ export class LocalStorage {
         return count
     }
 
+    static buildOptionHTMLFromLocalStorage(elementToAppend: HTMLInputElement, prefix: fetchPefix) {
+        const empresas: EmpresaJSON[] = LocalStorage.fetchOnLocalStorage(prefix)
+    
+        empresas.forEach((e: EmpresaJSON)  => {
+            const option = document.createElement("option")
+            option.value = e.nome
+            option.text = e.nome
+    
+            elementToAppend?.appendChild(option)
+    
+        })
+    }
 }
 
 export enum fetchPefix {

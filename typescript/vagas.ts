@@ -1,6 +1,6 @@
 import { CandidatoJSON } from "./CandidatoClass.js"
 import { fetchPefix, LocalStorage } from "./LocalStorage.js"
-import { Modal } from "./ModalClass.js"
+import { Modal} from "./ModalClass.js"
 import { Vaga, VagaJSON } from "./VagaClass.js"
 
 const candidatosUl = document.getElementById("candidatos")
@@ -10,6 +10,7 @@ const submitButtonVaga = document.getElementById("submitVaga")
 const nomeVaga = document.getElementById('nomeVaga') as HTMLInputElement
 const descricao = document.getElementById('descricao') as HTMLInputElement
 const empresa = document.getElementById('escolhaEmpresa') as HTMLInputElement
+const selectOption =  document.getElementById("escolhaEmpresa") as HTMLInputElement
 
 // modal
 const buttonOpenModalVaga = document.getElementById("cadastrarVaga")
@@ -63,4 +64,6 @@ function buildHtmlList() {
         )
 }
 
+
+LocalStorage.buildOptionHTMLFromLocalStorage(selectOption, fetchPefix.EMPRESAS)
 buildHtmlList()

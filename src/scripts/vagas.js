@@ -7,6 +7,7 @@ const submitButtonVaga = document.getElementById("submitVaga");
 const nomeVaga = document.getElementById('nomeVaga');
 const descricao = document.getElementById('descricao');
 const empresa = document.getElementById('escolhaEmpresa');
+const selectOption = document.getElementById("escolhaEmpresa");
 // modal
 const buttonOpenModalVaga = document.getElementById("cadastrarVaga");
 const buttonCloseVaga = document.getElementById("btnCloseVaga");
@@ -41,4 +42,5 @@ function buildHtmlList() {
         candidatosUl?.appendChild(newCandidato);
     });
 }
+LocalStorage.buildOptionHTMLFromLocalStorage(selectOption, fetchPefix.EMPRESAS);
 buildHtmlList();
